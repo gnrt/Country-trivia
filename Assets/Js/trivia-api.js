@@ -12,8 +12,11 @@ var quizBody = document.querySelector('.question-box');     // document location
 var score = localStorage.getItem('score');          // store 'score' data from previous games
 
 function getApi() {
-    var triviaUrl = "https://the-trivia-api.com/api/questions?limit=1";
+    var search      // this variable will be loaded with the country's name from map
+    var triviaUrl = "https://the-trivia-api.com/api/questions?limit=1&tags=" + search;
 
+    // fetch data from trivia site.  working on search function for 
+    // data[0].queston   '?tags=<country>' does not always return result
     fetch(triviaUrl, {
         method: 'GET'
     })
@@ -30,8 +33,6 @@ function getApi() {
             //  successfully loads in question to questionText div.  need to use [0] for data array to work!!
             questionText.textContent = data[0].question;
             console.log(data[0].question);
-
-            // questionText.append(questionText);
         });
 
 };

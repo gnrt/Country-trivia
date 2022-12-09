@@ -16,7 +16,7 @@ var score = localStorage.getItem('score');          // store 'score' data from p
 // Using this function we can search for questions by manipulating 'freetext' 
 // body parameter
 function getApi() {
-    var search = $("input:text").val();// = <form submission>    // this variable will be loaded with the country's name from map
+    var search = 'canada';//$("input:text").val();// = <form submission>    // this variable will be loaded with the country's name from map
     var triviaUrl = "https://the-trivia-api.com/api/questions/search";
 
     fetch(triviaUrl, {
@@ -32,8 +32,7 @@ function getApi() {
         })
         .then(function (data) {
             console.log(data);
-            // localStorage.setItem('lastQuestion', data[0].question);
-            //             // here we will create the quiz format
+            // here we will create the quiz format
             var questionText = document.querySelector('.question');  // link to html location to create element for question display
             // var answerButtons = $('.answers');   // link to html location to create buttons for potential answers
             //             //  successfully loads in question to questionText div.  need to use [0] for data array to work!!
@@ -45,23 +44,25 @@ function getApi() {
             var ansKey = [data[0].incorrectAnswers[0], data[0].incorrectAnswers[1], data[0].incorrectAnswers[2], data[0].correctAnswer];
 
             shuffle(ansKey);
-
-
             console.log(ansKey);
 
             // ----------------------------------------------------  To be added, button creation and population with 4 answers  ---------------------------------------------------
-            // var answers = [];
-            // for(var i = 0; i < answers.length; i++){
-            //     answers[i] = data[i].incorrectAnswers;
-            //     console.log('answer ' + i + ": " + answers[i].textContent);
-            // };
+            var buttonList = document.querySelector('#answer-buttons');
+
+            for(var b = 0; b < 4; b++){
+                var multChoice = document.createElement('button');
+                multChoice.type = 'button';
+                multChoice.textContent = ansKey[b];
+
+                buttonList.appendChild(multChoice);
+            }
         });
     return;
 };
 
 // getApi();
 
-var button = $('.btn');
+var button = $('.btn1');
 
 button.on('click', function (event) {
     event.preventDefault();

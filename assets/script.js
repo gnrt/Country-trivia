@@ -7,7 +7,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 for (var i = 0; i < data.length; i++) {
     var marker = L.marker([data[i].CapitalLatitude, data[i].CapitalLongitude],{title:data[i].CountryName}).addTo(map);
-    marker.on('click', function(){
-        console.log();
+    marker.on('click', function(event){
+        console.log(event.target.options.title);
     })
 }

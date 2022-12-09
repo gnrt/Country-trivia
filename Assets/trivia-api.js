@@ -8,7 +8,7 @@
 
 // ------------------------------------------------------------------------------------------
 
-var quizBody = document.querySelector('.question-box');     // document location of the trivia widget to be added
+var quizBody = document.querySelector('.question');     // document location of the trivia widget to be added
 var score = localStorage.getItem('score');          // store 'score' data from previous games
 
 
@@ -58,7 +58,12 @@ function getApi() {
             };
 
             buttonList.addEventListener('click', function(event){
-                checkAnswer(event.target.textContent, data[0].correctAnswer);
+                if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
+                    score++;
+                    quizBody.textContent = 'You are correct!';
+                    while(buttonList.firstChild)
+                        buttonList.removeChild(buttonList.lastChild);
+                };
                 console.log("your answer was " + checkAnswer(event.target.textContent, data[0].correctAnswer));
             });
         });

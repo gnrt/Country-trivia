@@ -42,7 +42,7 @@ var score = localStorage.getItem('score');          // store 'score' data from p
 // Using this function we can search for questions by manipulating 'freetext' 
 // body parameter
 function getApi() {
-    var search = 'pakistan';    // this variable will be loaded with the country's name from map
+    var search =  $("input:text").val();// = <form submission>    // this variable will be loaded with the country's name from map
     var triviaUrl = "https://the-trivia-api.com/api/questions/search";
 
     fetch(triviaUrl, {
@@ -58,10 +58,37 @@ function getApi() {
         })
         .then(function (data) {
             console.log(data);
-            localStorage.setItem('lastQuestion', data.question);
-        });
+            // localStorage.setItem('lastQuestion', data[0].question);
+//             // here we will create the quiz format
+            var questionText = document.querySelector('.question');  // link to html location to create element for question display
+            // var answerButtons = $('.answers');   // link to html location to create buttons for potential answers
+//             //  successfully loads in question to questionText div.  need to use [0] for data array to work!!
+            questionText.textContent = data[0].question;
+            console.log(data[0].question);
 
+            console.log(data[0].incorrectAnswers[0]);
+            console.log(data[0].incorrectAnswers[1]);
+            console.log(data[0].incorrectAnswers[2]);
+
+
+// ----------------------------------------------------  To be added, button creation and population with 4 answers  ---------------------------------------------------
+            // var answers = [];
+            // for(var i = 0; i < answers.length; i++){
+            //     answers[i] = data[i].incorrectAnswers;
+            //     console.log('answer ' + i + ": " + answers[i].textContent);
+            // };
+        });
+        return;
 };
+
+// getApi();
+
+var button = $('.btn');
+
+button.on('click', function(event){
+    event.preventDefault();
+    getApi();
+});
 
 // <<<<<<<<<<<<<<<<<< META >>>>>>>>>>>>>>>>>>>>>>
 

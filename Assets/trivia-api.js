@@ -16,7 +16,7 @@ var score = localStorage.getItem('score');          // store 'score' data from p
 // Using this function we can search for questions by manipulating 'freetext' 
 // body parameter
 function getApi() {
-    var search = 'canada';//$("input:text").val();// = <form submission>    // this variable will be loaded with the country's name from map
+    var search = 'pakistan';//$("input:text").val();// = <form submission while testing>    // this variable will be loaded with the country's name from map
     var triviaUrl = "https://the-trivia-api.com/api/questions/search";
 
     fetch(triviaUrl, {
@@ -43,32 +43,42 @@ function getApi() {
             // generate answers in random order
             var ansKey = [data[0].incorrectAnswers[0], data[0].incorrectAnswers[1], data[0].incorrectAnswers[2], data[0].correctAnswer];
 
+            // randomize order of answers
             shuffle(ansKey);
             console.log(ansKey);
 
-            // ----------------------------------------------------  To be added, button creation and population with 4 answers  ---------------------------------------------------
             var buttonList = document.querySelector('#answer-buttons');
 
-            for(var b = 0; b < 4; b++){
+            for (var b = 0; b < 4; b++) {
                 var multChoice = document.createElement('button');
                 multChoice.type = 'button';
                 multChoice.textContent = ansKey[b];
 
                 buttonList.appendChild(multChoice);
-            }
+            };
+
+            buttonList.addEventListener('click', function(event){
+                checkAnswer(event.target.textContent, data[0].correctAnswer);
+                console.log("your answer was " + checkAnswer(event.target.textContent, data[0].correctAnswer));
+            });
         });
     return;
 };
 
 // getApi();
 
-var button = $('.btn1');
+// --- this button click will be replaced with marker selection on map ---
+var button = document.querySelector('.btn1');
 
-button.on('click', function (event) {
+button.addEventListener('click', function (event) {
     event.preventDefault();
+    console.log(event.target);
+
+    // button.style.display = 'none';
     getApi();
 });
 
+// --- end button click ---
 
 
 // function to shuffle array so answers appear in random order when generated
@@ -89,6 +99,15 @@ function shuffle(array) {
 
     return array;
 };
+
+function checkAnswer(selection, answer) {
+    console.log('correct = ' + answer);
+    if(selection == answer){
+        return true;
+    } else {
+        return false;
+    };
+}
 
 // <<<<<<<<<<<<<<<<<< META >>>>>>>>>>>>>>>>>>>>>>
 

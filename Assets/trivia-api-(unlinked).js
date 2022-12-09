@@ -1,33 +1,22 @@
-var map = L.map('map').setView([51.505, -0.09], 5);
-console.log(data);
+// this is the section for the trivia API
 
+// William Distefano, part of group 2
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+// recieve query for country name from map api
+// pull one random question about that country
+// record score to localData
 
-// populate map with clickable markers
-for (var i = 0; i < data.length; i++) {
-    var marker = L.marker([data[i].CapitalLatitude, data[i].CapitalLongitude], { title: data[i].CountryName }).addTo(map);
-   
-    marker.on('click', function (event) {
-        console.log(event.target.options.title);
-        getApi(event.target.options.title);
-        
-    });
-};
+// ------------------------------------------------------------------------------------------
 
-// ----------------------------- Trivia functionality -----------------------------
-
+var quizBody = document.querySelector('.question');     // document location of the trivia widget to be added
 var score = localStorage.getItem('score');          // store 'score' data from previous games
 
 
 // note: this fetch function was given by the creator of The Trivia API
 // Using this function we can search for questions by manipulating 'freetext' 
 // body parameter
-function getApi(search) {
-    //$("input:text").val();// = <form submission while testing>    // this variable will be loaded with the country's name from map
+function getApi() {
+    var search = 'pakistan';//$("input:text").val();// = <form submission while testing>    // this variable will be loaded with the country's name from map
     var triviaUrl = "https://the-trivia-api.com/api/questions/search";
 
     fetch(triviaUrl, {
@@ -71,12 +60,12 @@ function getApi(search) {
             buttonList.addEventListener('click', function(event){
                 if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
                     score++;
-                    questionText.innerHTML = 'You are correct!';
+                    quizBody.textContent = 'You are correct!';
                     // this loop will terminate all buttons after giving answer boolean
                     while(buttonList.firstChild)
                         buttonList.removeChild(buttonList.lastChild);
                 } else {
-                    questionText.innerHTML = 'You are incorrect!';
+                    quizBody.textContent = 'You are incorrect!';
                     while(buttonList.firstChild)
                         buttonList.removeChild(buttonList.lastChild);
                 };
@@ -86,16 +75,18 @@ function getApi(search) {
     return;
 };
 
+// getApi();
+
 // --- this button click will be replaced with marker selection on map ---
-// var button = document.querySelector('.btn1');
+var button = document.querySelector('.btn1');
 
-// button.addEventListener('click', function (event) {
-//     event.preventDefault();
-//     console.log(event.target);
+button.addEventListener('click', function (event) {
+    event.preventDefault();
+    console.log(event.target);
 
-//     // button.style.display = 'none';
-//     getApi();
-// });
+    // button.style.display = 'none';
+    getApi();
+});
 
 // --- end button click ---
 
@@ -129,3 +120,21 @@ function checkAnswer(selection, answer) {
         return false;
     };
 }
+
+// <<<<<<<<<<<<<<<<<< META >>>>>>>>>>>>>>>>>>>>>>
+
+// There's no need for an API key to request questions, simply send a GET request to
+// https://the-trivia-api.com/api/questions
+
+// find docs for help with api
+// https://thetriviaapi.com/docs/
+
+
+
+// From Will Fry, creator of Trivia API
+// search parameters for fetch
+//
+// freetext - text value to search for (optional)
+// perPage - number of questions to return (defaults to 10)
+// pageNumber - can be used in conjunction with perPage when there are more results than can be returned in one response (defaults to 1)
+// categories - an array of categories to filter questions by (defaults to all categories)

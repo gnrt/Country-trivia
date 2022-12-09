@@ -61,6 +61,11 @@ function getApi() {
                 if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
                     score++;
                     quizBody.textContent = 'You are correct!';
+                    // this loop will terminate all buttons after giving answer boolean
+                    while(buttonList.firstChild)
+                        buttonList.removeChild(buttonList.lastChild);
+                } else {
+                    quizBody.textContent = 'You are incorrect!';
                     while(buttonList.firstChild)
                         buttonList.removeChild(buttonList.lastChild);
                 };
@@ -105,6 +110,8 @@ function shuffle(array) {
     return array;
 };
 
+// if selected answer button matches text of data[0].correctAnswer, return true
+// else return false
 function checkAnswer(selection, answer) {
     console.log('correct = ' + answer);
     if(selection == answer){

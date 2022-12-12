@@ -10,11 +10,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // populate map with clickable markers
 for (var i = 0; i < data.length; i++) {
     var marker = L.marker([data[i].CapitalLatitude, data[i].CapitalLongitude], { title: data[i].CountryName }).addTo(map);
-   
+
     marker.on('click', function (event) {
         console.log(event.target.options.title);
         getApi(event.target.options.title);
-        
+
     });
 };
 
@@ -68,16 +68,15 @@ function getApi(search) {
                 buttonList.appendChild(multChoice);
             };
 
-            buttonList.addEventListener('click', function(event){
-                if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
-                    score++;
+            buttonList.addEventListener('click', function (event) {
+                if (checkAnswer(event.target.textContent, data[0].correctAnswer)) {
                     questionText.innerHTML = 'You are correct!';
                     // this loop will terminate all buttons after giving answer boolean
-                    while(buttonList.firstChild)
+                    while (buttonList.firstChild)
                         buttonList.removeChild(buttonList.lastChild);
                 } else {
                     questionText.innerHTML = 'You are incorrect!';
-                    while(buttonList.firstChild)
+                    while (buttonList.firstChild)
                         buttonList.removeChild(buttonList.lastChild);
                 };
                 console.log("your answer was " + checkAnswer(event.target.textContent, data[0].correctAnswer));
@@ -123,7 +122,7 @@ function shuffle(array) {
 // else return false
 function checkAnswer(selection, answer) {
     console.log('correct = ' + answer);
-    if(selection == answer){
+    if (selection == answer) {
         return true;
     } else {
         return false;

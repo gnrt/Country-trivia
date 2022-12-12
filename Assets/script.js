@@ -20,7 +20,7 @@ for (var i = 0; i < data.length; i++) {
 
 // ----------------------------- Trivia functionality -----------------------------
 
-var score = localStorage.getItem('score');          // store 'score' data from previous games
+
 
 
 // note: this fetch function was given by the creator of The Trivia API
@@ -66,38 +66,32 @@ function getApi(search) {
                 multChoice.textContent = ansKey[b];
 
                 buttonList.appendChild(multChoice);
+
+                buttonList.addEventListener('click', function(event){
+                    event.preventDefault();
+                    if(event.target.textContent == data[0].correctAnswer){
+                      scoreKeeper(true);
+                        questionText.innerHTML = 'You are correct!';
+                        // this loop will terminate all buttons after giving answer boolean
+                        while(buttonList.firstChild){
+                            buttonList.removeChild(buttonList.lastChild);
+                    } } 
+                    else {
+                        scoreKeeper(false);
+                        questionText.innerHTML = 'You are incorrect!';
+                        while(buttonList.firstChild){
+                            buttonList.removeChild(buttonList.lastChild);
+                    }};
+                   
+                });
             };
 
-            buttonList.addEventListener('click', function(event){
-                if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
-                    score++;
-                    questionText.innerHTML = 'You are correct!';
-                    // this loop will terminate all buttons after giving answer boolean
-                    while(buttonList.firstChild)
-                        buttonList.removeChild(buttonList.lastChild);
-                } else {
-                    questionText.innerHTML = 'You are incorrect!';
-                    while(buttonList.firstChild)
-                        buttonList.removeChild(buttonList.lastChild);
-                };
-                console.log("your answer was " + checkAnswer(event.target.textContent, data[0].correctAnswer));
-            });
+          
         });
     return;
 };
 
-// --- this button click will be replaced with marker selection on map ---
-// var button = document.querySelector('.btn1');
 
-// button.addEventListener('click', function (event) {
-//     event.preventDefault();
-//     console.log(event.target);
-
-//     // button.style.display = 'none';
-//     getApi();
-// });
-
-// --- end button click ---
 
 
 // function to shuffle array so answers appear in random order when generated
@@ -119,13 +113,17 @@ function shuffle(array) {
     return array;
 };
 
-// if selected answer button matches text of data[0].correctAnswer, return true
-// else return false
-function checkAnswer(selection, answer) {
-    console.log('correct = ' + answer);
-    if(selection == answer){
-        return true;
+
+
+function scoreKeeper (result){
+    var correct = 0;
+    var incorrect = 0;
+    if(result == true) {
+        correct +=1;
     } else {
-        return false;
-    };
+        incorrect +=1;
+
+    }
+    console.log(correct);
+    console.log(incorrect);
 }

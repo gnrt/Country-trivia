@@ -20,7 +20,6 @@ for (var i = 0; i < data.length; i++) {
 
 // ----------------------------- Trivia functionality -----------------------------
 
-var score = localStorage.getItem('score');          // store 'score' data from previous games
 
 
 // note: this fetch function was given by the creator of The Trivia API
@@ -70,7 +69,6 @@ function getApi(search) {
 
             buttonList.addEventListener('click', function(event){
                 if(checkAnswer(event.target.textContent, data[0].correctAnswer)){
-                    score++;
                     questionText.innerHTML = 'You are correct!';
                     // this loop will terminate all buttons after giving answer boolean
                     while(buttonList.firstChild)
@@ -81,6 +79,7 @@ function getApi(search) {
                         buttonList.removeChild(buttonList.lastChild);
                 };
                 console.log("your answer was " + checkAnswer(event.target.textContent, data[0].correctAnswer));
+                
             });
         });
     return;

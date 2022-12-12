@@ -10,11 +10,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // populate map with clickable markers
 for (var i = 0; i < data.length; i++) {
     var marker = L.marker([data[i].CapitalLatitude, data[i].CapitalLongitude], { title: data[i].CountryName }).addTo(map);
-   
+
     marker.on('click', function (event) {
         console.log(event.target.options.title);
         getApi(event.target.options.title);
-        
+
     });
 };
 
@@ -86,7 +86,7 @@ function getApi(search) {
                 });
             };
 
-          
+
         });
     return;
 };
@@ -113,13 +113,6 @@ function shuffle(array) {
     return array;
 };
 
-
-
-function scoreKeeper (result){
-    var correct = 0;
-    var incorrect = 0;
-    if(result == true) {
-        correct +=1;
     } else {
         incorrect +=1;
 

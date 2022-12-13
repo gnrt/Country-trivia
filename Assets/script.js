@@ -54,7 +54,6 @@ function getApi(search) {
             // create array with all answers
             // generate answers in random order
             var ansKey = [data[0].incorrectAnswers[0], data[0].incorrectAnswers[1], data[0].incorrectAnswers[2], data[0].correctAnswer];
-            var correct = data[0].correctAnswer
             console.log(data[0].correctAnswer);
             // randomize order of answers
             shuffle(ansKey);
@@ -74,7 +73,7 @@ function getApi(search) {
             buttonList.addEventListener('click', function(event){
                 event.preventDefault();
 
-                if(event.target.textContent == correct){
+                if(event.target.textContent == data[0].correctAnswer){
                     result = true;
                     questionText.innerHTML = 'You are correct!';
                     console.log('right')
@@ -86,9 +85,9 @@ function getApi(search) {
                     console.log('wrong')
                     ansKey = 0;
                 };
-                scoreKeeper(result);
+                // scoreKeeper(result);
                 while(buttonList.firstChild){
-                    buttonList.removeChild(buttonList.lastChild);
+                buttonList.removeChild(buttonList.lastChild);
             } 
 
 
@@ -124,15 +123,15 @@ function shuffle(array) {
 
 
 
-function scoreKeeper (result){
-    const score = parseInt(counter.innerHTML);
+// function scoreKeeper (result){
+//     const score = parseInt(counter.innerHTML);
 
-    if(result == true) {
-        counter.innerHTML = score + 1;
-    } else if (score == 0 && result == false) {
-        return;
-    } else {
-        counter.innerHTML = score - 1;
-    }
-    console.log(score);
-};
+//     if(result == true) {
+//         counter.innerHTML = score + 1;
+//     } else if (score == 0 && result == false) {
+//         return;
+//     } else {
+//         counter.innerHTML = score - 1;
+//     }
+//     console.log(score);
+// };

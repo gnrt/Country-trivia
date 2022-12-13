@@ -85,7 +85,7 @@ function getApi(search) {
                     console.log('wrong')
                     ansKey = 0;
                 };
-                // scoreKeeper(result);
+
                 while(buttonList.firstChild){
                 buttonList.removeChild(buttonList.lastChild);
             } 
@@ -93,7 +93,7 @@ function getApi(search) {
 
                 return;
             });
-
+            scoreKeeper(result);
         });
 
     return;
@@ -123,15 +123,15 @@ function shuffle(array) {
 
 
 
-// function scoreKeeper (result){
-//     const score = parseInt(counter.innerHTML);
+function scoreKeeper (result){
+    const score = parseInt(counter.innerHTML);
 
-//     if(result == true) {
-//         counter.innerHTML = score + 1;
-//     } else if (score == 0 && result == false) {
-//         return;
-//     } else {
-//         counter.innerHTML = score - 1;
-//     }
-//     console.log(score);
-// };
+    if(result == true) {
+        counter.innerHTML = score + 1;
+    } else if (score == 0 && result == false) {
+        return;
+    } else {
+        counter.innerHTML = score - 1;
+    }
+    console.log(score);
+};

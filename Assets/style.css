@@ -1,8 +1,6 @@
-
-
 #map {
     height: 600px;
-    width: 600px;
+    width: 1200px;
     border: 5px solid black;
 
 }
@@ -10,38 +8,37 @@
 
 .headerStyle {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 60px;
     border: 5px solid black;
     text-align: center;
-    background: #1abc9c;
-    color: white;
+    background-image: linear-gradient(0deg, lightblue, lightgreen);
+    /* background: #1abc9c; */
+    color: black;
     font-size: 30px;
     position: sticky;
     top: 0;
 }
 
 .pageFix {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    left: 10%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
 
 }
 
-
-
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2px auto;
-  width: 100%;
- 
-  
- 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px auto;
+    width: 100%;
+
+
 }
 
 
@@ -55,10 +52,15 @@
     align-items: flex-start;
 
 }
+
 #trivia-box {
     border: 5px solid black;
     width: 400px;
     height: 600px;
     margin-top: 20px;
-   
+    background-color: whitesmoke;
+}
+
+body {
+    background-color: beige;
 }

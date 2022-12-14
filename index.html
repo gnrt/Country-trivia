@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Country Trivia</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
@@ -26,12 +26,12 @@
         <h1>Country Trivia Game</h1>
         <h3>Country Trivia: Click a country to begin!</h3>
 
-       
+
 
     </header>
 
 
-
+    <!-- <main class="main-display-box"> -->
 
     <div class="container pageFix">
         <div id="map"></div>
@@ -41,18 +41,18 @@
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">Scoreboard</span>
-                        <p>Score will display here eventually</p>
+                        <div>Current Score: <span class="scoreCounter">0</span></div>
                     </div>
                     <div class="card-action">
                         <a href="#">Reset</a>
                     </div>
                 </div>
-<!-- William adding changes here for testing-->    
+                <!-- William adding changes here for testing-->
                 <div class='question'>This is a question</div>
-                <div id="answer-buttons"> 
+                <div id="answer-buttons">
                     <!--buttons will hopefully be dynamic-->
                     <!-- <button class="btn1">Start Test</button> -->
-                <!--<button>B</button>
+                    <!--<button>B</button>
                     <button>C</button>
                     <button>D</button> -->
                 </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-
+    <!-- </main> -->
 
 
 
@@ -72,7 +72,7 @@
 
 
 
-    <script src="Assets/country-capitals.js"></script>   
+    <script src="Assets/country-capitals.js"></script>
     <script src="Assets/script.js"></script>
     <!-- <script src="./assets/trivia-api.js"></script> -->
 </body>
